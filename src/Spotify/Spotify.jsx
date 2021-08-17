@@ -1,5 +1,7 @@
 export const authEndpoint = "https://accounts.spotify.com/authorize";
-export const redirectUri = "http://localhost:3000/";
+
+const netlify = "https://spotifyclone-byanas.netlify.app/"
+export const redirectUri =  netlify;
 export const clientId = "f384e466414a4118ab7d0287af6ee322";
 
 const scopes = [
@@ -14,12 +16,12 @@ export const getTokenFromUrl = () => {
   return window.location.hash
     .substring(1)
     .split("&")
-    .reduce(( initial , item) => {
+    .reduce((initial, item) => {
       var parts = item.split("=");
       initial[parts[0]] = decodeURIComponent(parts[1]);
 
       return initial;
-    } , {});
+    }, {});
 };
 export const loginUri = `${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join(
   "%20"
